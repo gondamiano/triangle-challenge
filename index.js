@@ -1,40 +1,42 @@
+import Errors from './Messages/Errors';
+import TriangleTypes from './Messages/TriangleTypes';
 
-function checkTriangleType(sideA, sideB, sideC) {
+ export default function checkTriangleType(sideA, sideB, sideC) {
   if (sideA == undefined || sideB == undefined || sideC == undefined) {
-      throw new Error("Error with the input parameters.");
+      throw new Error(Errors.nullOrUndefined);
   }
 
   checkInputValues(...arguments);
 
   if(sideA === sideB && sideA === sideC) {
-    console.log("You form a equilateral");
+    console.log(`You form a ${TriangleTypes.equilateral} triangle`);
   }
 
   else if(sideA === sideB || sideA === sideC || sideB === sideC) {
-    console.log("You form a Isosceles");
+    console.log(`You form a ${TriangleTypes.Isosceles} triangle`);
   }
 
-  else console.log("You form a Scalene");
+  else console.log(`You form a ${TriangleTypes.Scalene} triangle`);
 }
 
 function checkInputValues(sideA, sideB, sideC){
   const args = [...arguments];
   if(args.length !== 3) {
-      throw new Error("Error: The number of parameters should be 3");
+      throw new Error(Errors.parametersLength);
   }
 
-  if(isNaN(sideA) || isNaN(sideB) || isNaN(sideC)) {
-      throw new Error("Error: Parameters should be numbers.");
+  if(!args.every(item => typeof item === "number")) {
+      throw new Error(Errors.argumentsType);
   }
 
   if(args.find(item => item < 0)) {
-      throw new Error("Error: The sides values should be positives and greater than 0.");
+      throw new Error(Errors.negativeOrZeroValues);
   }
 
   if(sideA + sideB < sideC || sideA + sideC < sideB || sideB + sideC < sideA) {
-    throw new Error("Error: The input values can't form a triangle.");
+    throw new Error(Errors.unabledToFormTriangle);
   }
 
 }
 
-checkTriangleType(31,30,32);
+checkTriangleType(25,25,25);
