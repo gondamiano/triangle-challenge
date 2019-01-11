@@ -1,0 +1,11 @@
+{
+  "name": "triangle-challenge",
+  "version": "1.0.0",
+  "description": "Triangle challenge for Tradeshift interview",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gonzalo Damiano",
+  "license": "ISC"
+}
